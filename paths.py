@@ -1,11 +1,10 @@
 #coding:utf-8
 
 '''
-定义程序中所有可能用到的路径信息
+paths
 
 '''
 
-### 定义所有的
 class PATHS:
 
     def __init__(self):
