@@ -2,7 +2,6 @@
 '''
 collecting stroke data from pubmed with e-unilities.
 
-<<<<<<< HEAD
 (“stroke”
 OR “cerebral infarction”
 OR “brain ischemia”
