@@ -8,7 +8,7 @@
 ### 定义所有的
 class PATHS:
 
-    def __init__(self,field):
+    def __init__(self):
         ## DATA FOLDER
         self.DATA_FOLDER = '../DATA'
 
@@ -20,6 +20,9 @@ class PATHS:
 
         ## EXTRACTED DATA FILE
         self.STROKE_DATA_FILE = self.DATA_FOLDER+'/stroke.txt'
+
+        ## FILES SPLITED
+        self.SPLIT_DATA_FOLDER = self.DATA_FOLDER+'/SPLITS/'
 
 
 

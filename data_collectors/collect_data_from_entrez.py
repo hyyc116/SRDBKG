@@ -40,7 +40,7 @@ def pubmed_info():
     print record["DbInfo"]["Count"]
     print record["DbInfo"]["LastUpdate"]
 
-def search_pubmed_and_pmc(db,term,b=0,outpath):
+def search_pubmed_and_pmc(db,term,outpath,b=0):
     ## search dataset
     search_handle = Entrez.esearch(db=db, term=term,usehistory="y")
     search_results = Entrez.read(search_handle)

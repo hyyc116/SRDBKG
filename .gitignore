@@ -12,6 +12,7 @@ DATA/stroke.txt
 DATA/stroke_bak.txt
 .DS_Store
 */.DS_Store/*
+DATA/*
 
 
 # Distribution / packaging

@@ -13,9 +13,18 @@ sys.setdefaultencoding('utf-8')
 from datetime import datetime
 from paths import PATHS
 
-def split_data(path):
+def split_data(path,outfolder):
 
-    outfilepath = path[:-4]+'_{:}.txt'
+    if not os.path.exists(outfolder):
+        os.makedirs(outfolder)
+
+    # path.split('/')[]
+    fname = os.path.split(path)[1]
+
+    name,fformat = fname.split('.')
+
+
+    outfilepath = os.path.join(outfolder,name+'_{:}.txt')
     print outfilepath
     index  = 0
     content = ''
@@ -42,8 +51,8 @@ def split_data(path):
 
 def remove_line_and_tag(content):
     content = content.decode('utf-8', 'ignore')
-    content = re.sub(r'\s+',' ',content)
     content = re.sub(r'<.*?>','',content)
+    content = re.sub(r'\s+',' ',content)
     return content.strip()
 
 def extract_title_and_abs_from_pmc(path):
@@ -162,14 +171,14 @@ def extract_title_and_abs(folder,outpath):
             if not f.endswith('.txt'):
                 continue
 
-            if f.endswith('_DATA.txt'):
-                continue
+            # if f.endswith('_DATA.txt'):
+            #     continue
 
-            if f.endswith('_bak.txt'):
-                continue
+            # if f.endswith('_bak.txt'):
+            #     continue
 
-            if f.endswith('stroke.txt'):
-                continue
+            # if f.endswith('stroke.txt'):
+            #     continue
 
             fpath = folder+f
 
@@ -208,9 +217,9 @@ def extract_title_and_abs(folder,outpath):
 
 if __name__ == '__main__':
     pathObj = PATHS()
-    split_data(pathObj.PMC_XML_FILE)
-    split_data(pathObj.PUBMED_XML_FILE)
-    extract_title_and_abs(pathObj.DATA_FOLDER,pathObj.STROKE_DATA_FILE)
+    split_data(pathObj.PMC_XML_FILE,pathObj.SPLIT_DATA_FOLDER)
+    split_data(pathObj.PUBMED_XML_FILE,pathObj.SPLIT_DATA_FOLDER)
+    extract_title_and_abs(pathObj.SPLIT_DATA_FOLDER,pathObj.STROKE_DATA_FILE)
 
 
 
