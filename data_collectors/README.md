@@ -36,10 +36,14 @@ This script will download data from pubmed and pmc with the first term above by 
 
 This downloading script use the e-utilities to search the databases and download 1000 records in one request.
 
-Results are saved in XML format in ../DATA/pmc_data.txt and ../DATA/pubmed_data.txt. There are 176,161 out of 176,213 records in PMC and 16,814 out of 16,837 records in PUBMED.
+Results are saved in XML format in ../DATA/pmc_xml.txt and ../DATA/pubmed_xml.txt. There are 176,161 out of 176,213 records in PMC and 16,814 out of 16,837 records in PUBMED.
+
+You can specify your own folder path in paths.py.
 
 ### data processing
-Since the data are too big to be uploaded to github, we first split the data downloaded to smaller files, and extract doi, title, abstract from the xml files and got 148,350 records.
+Since the data are too big to be uploaded to github, we first split the data downloaded to smaller files, and extract doi, title, abstract from the xml files and got 148,350 records and saved as ../DATA/stroke.txt.
 
     python split_extract_data.py
+
+
 

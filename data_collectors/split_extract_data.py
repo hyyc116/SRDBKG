@@ -7,9 +7,11 @@ split data and merge data
 import os
 import re
 import sys
+sys.path.extend(['.','..'])
 reload(sys)
 sys.setdefaultencoding('utf-8')
 from datetime import datetime
+from paths import PATHS
 
 def split_data(path):
 
@@ -205,10 +207,10 @@ def extract_title_and_abs(folder,outpath):
 
 
 if __name__ == '__main__':
-
-    split_data('../DATA/pmc_data.txt')
-    split_data('../DATA/pubmed_data.txt')
-    extract_title_and_abs('../DATA','../DATA/stroke.txt')
+    pathObj = PATHS()
+    split_data(pathObj.PMC_XML_FILE)
+    split_data(pathObj.PUBMED_XML_FILE)
+    extract_title_and_abs(pathObj.DATA_FOLDER,pathObj.STROKE_DATA_FILE)
 
 
 

@@ -26,6 +26,10 @@ from Bio import Entrez
 Entrez.email = 'yourmail@mail.com' ### update your mail
 import time
 from datetime import datetime
+import sys
+sys.path.extend(['.','..'])
+from paths import PATHS
+import os
 
 pmc_term = '((((((((hand)[Abstract] OR arm)[Abstract] OR upper extremity)[Abstract] OR upper limb))[Abstract] AND (((((stroke)[Abstract] OR cerebral infarction)[Abstract] OR brain ischemia)[Abstract] OR cerebral hemorrhagic)[Abstract] OR subarachnoid hemorrhage)[Abstract])) OR ((((((hand)[Title] OR arm)[Title] OR upper extremity)[Title] OR upper limb))[Title] AND (((((stroke)[Title] OR cerebral infarction)[Title] OR brain ischemia)[Title] OR cerebral hemorrhagic)[Title] OR subarachnoid hemorrhage)[Title]))'
 pubmed_term = '(((((((hand) OR arm) OR upper extremity) OR upper limb)) AND (((((stroke) OR cerebral infarction) OR brain ischemia) OR cerebral hemorrhagic) OR subarachnoid hemorrhage)))'
@@ -36,7 +40,7 @@ def pubmed_info():
     print record["DbInfo"]["Count"]
     print record["DbInfo"]["LastUpdate"]
 
-def search_pubmed_and_pmc(db,term,b=0):
+def search_pubmed_and_pmc(db,term,b=0,outpath):
     ## search dataset
     search_handle = Entrez.esearch(db=db, term=term,usehistory="y")
     search_results = Entrez.read(search_handle)
@@ -50,7 +54,7 @@ def search_pubmed_and_pmc(db,term,b=0):
 
 
     batch_size = 1000
-    out_handle = open("../DATA/{:}_data.txt".format(db), "a+")
+    out_handle = open(outpath, "a+")
     start = b
     while start < count:
         end = min(count, start+batch_size)
@@ -74,9 +78,16 @@ def search_pubmed_and_pmc(db,term,b=0):
 
     out_handle.close()
 
-if __name__ == '__main__':
-    ## download data from pubmed and pmc
-    search_pubmed_and_pmc('pubmed',pubmed_term)
-    search_pubmed_and_pmc('pmc',pubmed_term)
+def download_data():
+    pathObj = PATHS()
+    ## create data folder if it do not exist.
+    if not os.path.exists(pathObj.DATA_FOLDER):
+        os.makedirs(pathObj.DATA_FOLDER)
+        print 'create data folder ...'
 
+    search_pubmed_and_pmc('pubmed',pubmed_term,pathObj.PUBMED_XML_FILE)
+    search_pubmed_and_pmc('pmc',pubmed_term,pathObj.PMC_XML_FILE)
+
+if __name__ == '__main__':
+    download_data()
 
