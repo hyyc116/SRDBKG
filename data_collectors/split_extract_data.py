@@ -1,12 +1,9 @@
 #coding:utf-8
 '''
 
-
 split data and merge data
 
-
 '''
-from bs4 import BeautifulSoup
 import os
 import re
 import sys
