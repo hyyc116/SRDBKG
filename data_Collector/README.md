@@ -45,5 +45,6 @@ Since the data are too big to be uploaded to github, we first split the data dow
 
     python split_extract_data.py
 
+Results have been uploaded to ../DATA folder.
 
 
