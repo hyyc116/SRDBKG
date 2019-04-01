@@ -6,13 +6,13 @@ __pycache__/
 # C extensions
 *.so
 
-DATA/PMC_DATA.txt
+DATA/*.txt
 DATA/PUBMED_DATA.txt
 DATA/stroke.txt
 DATA/stroke_bak.txt
 .DS_Store
 */.DS_Store/*
-DATA/*
+DATA/SPLITS/*
 
 
 # Distribution / packaging
